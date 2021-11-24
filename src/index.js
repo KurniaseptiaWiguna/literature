@@ -13,11 +13,11 @@ const client = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <UserContextProvider> */}
+    <UserContextProvider>
       <QueryClientProvider client={client}>
         <App />
       </QueryClientProvider>
-    {/* </UserContextProvider> */}
+    </UserContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

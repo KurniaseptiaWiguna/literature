@@ -1,5 +1,12 @@
+import { useContext,useState } from 'react'
 import {Container,Row, Col, Navbar,Button} from 'react-bootstrap'
+import SignIn from '../component/modal/SignIn';
+import SignUp from '../component/modal/SignUp';
+import {UserContext} from '../contexts/userContext'
 function Home() {
+
+    const [state,dispatch]= useContext(UserContext)
+    console.log(state)
     return (
         <div className="cover-page text-white" >
             <Container>
@@ -20,10 +27,10 @@ function Home() {
                         <p className="h3">Sign-up and receive unlimited accesss to all of your literatur - share your literature.</p>
                         <Row className="mt-5">
                             <Col className="d-grid gap-2 ml-5">
-                                <Button variant="danger" size="lg">Login</Button>
+                                <Button variant="danger" size="lg" onClick={()=> dispatch({ type: 'SHOW_LOGIN'}) }>Sign In</Button>
                             </Col>
                             <Col className="d-grid gap-2 mr-5">
-                                <Button variant="light" size="lg">Register</Button>
+                                <Button variant="light" size="lg"  onClick={()=> dispatch({ type: 'SHOW_REGISTER'}) }>Sign Up</Button>
                             </Col>
                         </Row>
                     </Col>
@@ -38,6 +45,16 @@ function Home() {
                     </Col>
                 </Row>
             </Container>
+            <SignIn
+                handleClose={() => dispatch({ type: 'HIDE_LOGIN' })}
+                switchModal={() => dispatch({ type: 'SWITCH_MODAL' })}
+                show={state.modalLogin}
+            />
+            <SignUp 
+                handleClose={() => dispatch({ type: 'HIDE_REGISTER' })}
+                switchModal={() => dispatch({ type: 'SWITCH_MODAL' })}
+                show={state.modalRegister}
+            />
         </div>
     )
 }

@@ -19,3 +19,6 @@ code {
   height: 80px;
   background-image: url(./assets/img/background.png)
 }
+.custom-color {
+  background-color: #161616;
+}
