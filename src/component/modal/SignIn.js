@@ -9,60 +9,57 @@ import {
     NavLink,
     Alert
 } from 'react-bootstrap'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
 import { UserContext } from '../../contexts/userContext'
 import {API} from '../../config/api'
 function SignIn(props) {
-    // const route = useHistory();
-    // let api = API();
+    const route = useHistory();
+    let api = API();
     const [state, dispatch] = useContext(UserContext)
     // // const [state, dispatch]= useContext(AppContext)
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     
-    // const [data,setData] = useState(JSON.parse(localStorage.getItem("Users")));
-    // const form = {
-    //     email: email,
-    //     password: password
-    // }
+    const [data,setData] = useState(JSON.parse(localStorage.getItem("Users")));
+    const form = {
+        email: email,
+        password: password
+    }
     
 
     async function handleOnSubmit(e) {
         e.preventDefault();
-        // try{
-        //     const body = JSON.stringify(form)
-        //     const config = {
-        //         method: "POST",
-        //         headers: {
-        //             "Content-type": "application/json",
-        //         },
-        //         body: body
-        //     };
+        try{
+            const body = JSON.stringify(form)
+            const config = {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json",
+                },
+                body: body
+            };
             
-        //     console.log(body)
-        //     const response = await api.post("/login", config);
+            console.log(body)
+            const response = await api.post("/login", config);
 
-        //     console.log(response);
-        //     // if(response.status === "success"){
-        //         dispatch({
-        //             type: 'LOGIN',
-        //             payload:{
-        //                 id: response.data.id,
-        //                 name: response.data.name,
-        //                 email: response.data.email,
-        //                 status: response.data.status,
-        //                 token: response.data.token,
-        //             }});
-                    
-        //         if( response.data.status == "admin"){
-        //             route.push("/transactions");
+            console.log(response);
+            // if(response.status === "success"){
+                dispatch({
+                    type: 'LOGIN_SUCCESS',
+                    payload:{
+                        username: response.username,
+                        token: response.token
+                    }});
+                    console.log(response.status)
+                if( response.status == "admin"){
+                    route.push("/admin");
     
-        //         }else{
-        //             route.push("/")
-        //         }
-        // }catch(e){
-
-        // }
+                }else{
+                    route.push("/")
+                }
+        }catch(e){
+            console.log(e)
+        }
         
     }
     

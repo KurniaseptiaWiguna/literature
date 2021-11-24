@@ -26,23 +26,36 @@ function SignUp(props) {
     
 
     async function handleOnSubmit(e) {
+        
         e.preventDefault();
-        // const role ="user"
         // try{
+        //     const body = JSON.stringify(form)
+        //     const config = {
+        //         method: "POST",
+        //         headers: {
+        //             "Content-type": "application/json",
+        //         },
+        //         body: body
+        //     };
             
+        //     console.log(body)
+        //     const response = await api.post("/register", config);
+
+        //     console.log(response);
+        //     // if(response.status === "success"){
         //         dispatch({
-        //             type: 'REGISTER',
-        //             payload: {
-        //                 fullName,
-        //                 email,
-        //                 gender: "",
-        //                 phone,
-        //                 password,
-        //                 photo: "profileimg.png",
-        //                 role,
-        //             }
-        //         })
-                
+        //             type: 'LOGIN_SUCCESS',
+        //             payload:{
+        //                 username: response.username,
+        //                 token: response.token
+        //             }});
+        //             console.log(response.status)
+        //         if( response.status == "admin"){
+        //             route.push("/admin");
+    
+        //         }else{
+        //             route.push("/")
+        //         }
         // }catch(e){
         //     console.log(e)
         // }
