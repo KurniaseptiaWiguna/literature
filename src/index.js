@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { QueryClient, QueryClientProvider } from "react-query";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
+import { UserContextProvider } from './contexts/userContext'
+
+
 import reportWebVitals from './reportWebVitals';
+
+const client = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {/* <UserContextProvider> */}
+      <QueryClientProvider client={client}>
+        <App />
+      </QueryClientProvider>
+    {/* </UserContextProvider> */}
   </React.StrictMode>,
   document.getElementById('root')
 );
